@@ -23,6 +23,22 @@ app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));
 
+// ✅ CORS FIX
+const allowedOrigins = [
+  "http://localhost:5173", // local dev
+  "https://nl-ims-frontend.vercel.app", // your vercel URL
+  "https://ims.novumlabs.in" // your custom domain if using
+];
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
 app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/assignments", assignmentRoutes);

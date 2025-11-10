@@ -108,7 +108,7 @@ function App() {
 
 
         {/* 🚫 404 Fallback */}
-        <Route
+        {/* <Route
           path="*"
           element={
             <div className="flex flex-col items-center justify-center min-h-screen text-white bg-gradient-to-br from-[#002F6C] via-[#003B89] to-[#0077C8]">
@@ -127,8 +127,8 @@ function App() {
                 Go Back
               </button>
             </div>
-          }
-        />
+          } */}
+        {/* /> */}
       </Routes>
     </BrowserRouter>
   );
