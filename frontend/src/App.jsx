@@ -17,6 +17,13 @@ import Teachers from './pages/admin/Teachers';
 import Batches from './pages/admin/Batches';
 import Payments from './pages/admin/Payments';
 
+// Student Pages
+import StudentLayout from './components/layout/StudentLayout';
+import StudentDashboard from './pages/student/StudentDashboard';
+import Attendance from './pages/student/Attendance';
+
+
+
 function App() {
   return (
     <BrowserRouter>
@@ -30,12 +37,21 @@ function App() {
 
         <Route element={<RequireAuth allowedRoles={['admin']} />}>
           <Route path="/admin" element={<AdminLayout />}>
-            <Route path="dashboard" element={<AdminDashboard />} /> 
-            <Route path="courses" element={<Courses />} />          
-            <Route path="students" element={<Students />} />        
-            <Route path="teachers" element={<Teachers />} />   
-            <Route path="batches" element={<Batches />} />  
-            <Route path="payments" element={<Payments />} />     
+            <Route path="dashboard" element={<AdminDashboard />} />
+            <Route path="courses" element={<Courses />} />
+            <Route path="students" element={<Students />} />
+            <Route path="teachers" element={<Teachers />} />
+            <Route path="batches" element={<Batches />} />
+            <Route path="payments" element={<Payments />} />
+          </Route>
+        </Route>
+
+        {/* 🔒 Student Routes */}
+        <Route element={<RequireAuth allowedRoles={['student']} />}>
+          <Route path="/student" element={<StudentLayout />}>
+            <Route path="dashboard" element={<StudentDashboard />} />
+            <Route path="my-courses" element={<h1 className="p-10">Classroom Coming Soon...</h1>} />
+            <Route path="attendance" element={<Attendance />} />
           </Route>
         </Route>
 
