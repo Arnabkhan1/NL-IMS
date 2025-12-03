@@ -27,7 +27,11 @@ const Login = () => {
         navigate('/admin/dashboard'); // আগে ছিল '/admin-dashboard' (ভুল)
       } else if (response.data.role === 'student') {
         navigate('/student/dashboard'); // ফিউচারের জন্য
-      } else {
+      } else if (response.data.role === 'teacher') {
+        navigate('/teacher/dashboard');
+      }else if (response.data.role === 'coordinator') {
+        navigate('/coordinator/dashboard');
+      }else {
         navigate('/');
       }
 

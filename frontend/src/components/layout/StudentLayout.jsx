@@ -1,5 +1,5 @@
 import { Link, Outlet, useNavigate } from 'react-router-dom';
-import { FaHome, FaSignOutAlt, FaUserCircle, FaUserCheck } from 'react-icons/fa';
+import { FaHome, FaSignOutAlt, FaUserCircle, FaUserCheck, FaClipboardList, FaBell, FaBrain } from 'react-icons/fa';
 
 const StudentLayout = () => {
     const navigate = useNavigate();
@@ -27,6 +27,15 @@ const StudentLayout = () => {
                     </Link>
                     <Link to="/student/attendance" className="flex items-center space-x-3 p-3 rounded hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition">
                         <FaUserCheck /> <span>Attendance</span>
+                    </Link>
+                    <Link to="/student/assignments" className="flex items-center space-x-3 p-3 rounded hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition">
+                        <FaClipboardList /> <span>Assignments</span>
+                    </Link>
+                    <Link to="/student/notifications" className="flex items-center space-x-3 p-3 rounded hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition">
+                        <FaBell /> <span>Notifications</span>
+                    </Link>
+                    <Link to="/student/quizzes" className="flex items-center space-x-3 p-3 rounded hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition">
+                        <FaBrain /> <span>Quizzes</span>
                     </Link>
                 </nav>
 

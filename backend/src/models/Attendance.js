@@ -1,4 +1,3 @@
-// backend/src/models/Attendance.js
 const mongoose = require('mongoose');
 
 const attendanceSchema = new mongoose.Schema({
@@ -13,20 +12,19 @@ const attendanceSchema = new mongoose.Schema({
         required: true
     },
     date: {
-        type: Date,
-        required: true,
-        default: Date.now
+        type: String, 
+        required: true
     },
     status: {
         type: String,
         enum: ['Present', 'Absent', 'Late'],
-        default: 'Present'
+        required: true
     }
 }, {
     timestamps: true
 });
 
-// একজন ছাত্রের একই দিনে একই ব্যাচে দুবার হাজিরা যেন না হয়
+// একজন ছাত্রের একই দিনে একই ব্যাচে একবারের বেশি হাজিরা নেওয়া যাবে না
 attendanceSchema.index({ batch: 1, student: 1, date: 1 }, { unique: true });
 
 module.exports = mongoose.model('Attendance', attendanceSchema);

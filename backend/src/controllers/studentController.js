@@ -34,13 +34,18 @@ const getStudentDashboard = async (req, res) => {
     }
 };
 
+// @desc    Get My Attendance History
 const getMyAttendance = async (req, res) => {
     try {
         const studentId = req.user._id;
+        
+        console.log("Fetching attendance for student:", studentId);
 
         const attendance = await Attendance.find({ student: studentId })
             .populate('batch', 'name') // ব্যাচের নাম দেখানোর জন্য
-            .sort({ date: -1 }); // শেষের তারিখ আগে দেখাবে
+            .sort({ date: -1 }); // নতুন তারিখ আগে
+
+        console.log(`Found ${attendance.length} records.`);
 
         res.json(attendance);
     } catch (error) {
@@ -48,4 +53,8 @@ const getMyAttendance = async (req, res) => {
     }
 };
 
-module.exports = { getStudentDashboard, getMyAttendance };
+
+module.exports = { 
+    getStudentDashboard, 
+    getMyAttendance 
+};

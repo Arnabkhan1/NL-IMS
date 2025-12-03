@@ -5,13 +5,15 @@ const Payment = require('../models/Payment');
 // @route   POST /api/payments
 const createPayment = async (req, res) => {
     try {
-        const { student, batch, amount, paymentMethod, remarks, date } = req.body;
+        // transactionId যোগ করা হলো
+        const { student, batch, amount, paymentMethod, remarks, date, transactionId } = req.body;
 
         const payment = await Payment.create({
             student,
             batch,
             amount,
             paymentMethod,
+            transactionId: transactionId || '', // যদি ক্যাশ হয়, তবে ফাঁকা থাকবে
             remarks,
             paymentDate: date || Date.now()
         });
@@ -21,6 +23,7 @@ const createPayment = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
 
 // @desc    Get all payment history
 // @route   GET /api/payments

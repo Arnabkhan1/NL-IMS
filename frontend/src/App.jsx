@@ -21,8 +21,15 @@ import Payments from './pages/admin/Payments';
 import StudentLayout from './components/layout/StudentLayout';
 import StudentDashboard from './pages/student/StudentDashboard';
 import Attendance from './pages/student/Attendance';
+import Assignments from './pages/student/Assignments';
+import Notifications from './pages/student/Notifications';
+import Quizzes from './pages/student/Quizzes';
+import TakeExam from './pages/student/TakeExam';
 
-
+//Teacher Pages
+import TeacherLayout from './components/layout/TeacherLayout';
+import TeacherDashboard from './pages/teacher/TeacherDashboard';
+import TeacherAttendance from './pages/teacher/TeacherAttendance';
 
 function App() {
   return (
@@ -52,8 +59,23 @@ function App() {
             <Route path="dashboard" element={<StudentDashboard />} />
             <Route path="my-courses" element={<h1 className="p-10">Classroom Coming Soon...</h1>} />
             <Route path="attendance" element={<Attendance />} />
+            <Route path="assignments" element={<Assignments />} />
+            <Route path="notifications" element={<Notifications />} />
+            <Route path="quizzes" element={<Quizzes />} />
+            <Route path="quiz/:id" element={<TakeExam />} />
           </Route>
         </Route>
+
+        {/* 🔒 Teacher Routes */}
+        <Route element={<RequireAuth allowedRoles={['teacher']} />}>
+          <Route path="/teacher" element={<TeacherLayout />}>
+            <Route path="dashboard" element={<TeacherDashboard />} />
+            {/* Attendance Page পরের ধাপে বানাবো */}
+            <Route path="attendance" element={<TeacherAttendance />} />
+          </Route>
+        </Route>
+
+
 
         {/* ==========================
             🚫 404 ROUTE (ভুল লিংকের জন্য)
